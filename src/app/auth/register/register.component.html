@@ -1,0 +1,6 @@
+<form (ngSubmit)="submit($event)" [formGroup]="form" novalidate>
+  <input id="email" name="email" type="email" formControlName="email"/>
+  <input id="password" name="password" formControlName="password" type="password">
+
+  <button type="submit" [disabled]="form.invalid">Register</button>
+</form>

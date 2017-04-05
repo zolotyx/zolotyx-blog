@@ -1,14 +1,14 @@
-import { MyAppPage } from './app.po';
+import { ZolotyxBlogPage } from './app.po';
 
-describe('my-app App', () => {
-  let page: MyAppPage;
+describe('zolotyx-blog App', () => {
+  let page: ZolotyxBlogPage;
 
   beforeEach(() => {
-    page = new MyAppPage();
+    page = new ZolotyxBlogPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should have dummy tests works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(true).toEqual(true);
   });
 });
