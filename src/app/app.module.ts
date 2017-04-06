@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { routing } from 'app/app.routing';
-import { PostListComponent } from './post-list/post-list.component';
-import { PostFormComponent } from './post-form/post-form.component';
+import { PostListComponent } from './post/post-list/post-list.component';
+import { PostFormComponent } from './post/post-form/post-form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PostDetailsComponent } from './post/post-details/post-details.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -39,7 +40,8 @@ export function HttpLoaderFactory(http: Http) {
     PostListComponent,
     PostFormComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

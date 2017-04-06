@@ -1,0 +1,12 @@
+<a [routerLink]="['/posts/add']">Add new post</a>
+<div class="columns">
+  <div class="column col-12" *ngFor="let item of items | async">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><a [routerLink]="['/posts', item.$key]">{{item.title}}</a></div>
+      </div>
+      <div class="card-body">{{item.body}}</div>
+    </div>
+  </div>
+</div>
+

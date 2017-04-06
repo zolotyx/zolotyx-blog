@@ -3,6 +3,9 @@
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "REGISTER": "Register",
-    "LOGIN": "Login"
+    "SIGN_IN": "Sign In",
+    "SIGN_OUT": "Sign Out",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout"
   }
 }

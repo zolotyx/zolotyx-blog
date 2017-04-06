@@ -1,36 +1,12 @@
 <div class="container grid-960">
-  <div class="columns">
-    <div class="column col-4">
-
-      <ul class="menu">
-
-        <li class="menu-item">
-          <a href="#" *ngIf="user" (click)="logout()">Logout</a>
-        </li>
-        <li class="menu-item">
-          <a href="#" *ngIf="!user" routerLink="/login">Login</a>
-        </li>
-      </ul>
-    </div>
-    <div class="column col-8">
-
-      <header class="navbar">
-        <section class="navbar-primary">
-          <a href="#" class="navbar-brand mr-10">Spectre.css</a>
-        </section>
-        <section class="navbar-section">
-          <a href="#" class="btn btn-link">Docs</a>
-          <a href="https://github.com/picturepan2/spectre" class="btn btn-link">GitHub</a>
-        </section>
-        <section class="navbar-section">
-          <div class="input-group input-inline">
-            <input class="form-input" type="text" placeholder="search"/>
-            <button class="btn btn-primary input-group-btn">Search</button>
-          </div>
-        </section>
-      </header>
-      <router-outlet></router-outlet>
-    </div>
-
-  </div>
+  <header class="navbar">
+    <section class="navbar-primary">
+      <a routerLink="/" class="navbar-brand mr-10">Zolotyx's Blog</a>
+    </section>
+    <section class="navbar-section">
+      <a href="#" *ngIf="user" (click)="logout()" [translate]="'AUTH.SIGN_OUT'"></a>
+      <a href="#" *ngIf="!user" routerLink="/login" [translate]="'AUTH.SIGN_IN'"></a>
+    </section>
+  </header>
+  <router-outlet></router-outlet>
 </div>
