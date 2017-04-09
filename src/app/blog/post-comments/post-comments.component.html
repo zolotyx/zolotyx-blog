@@ -1,0 +1,31 @@
+<h2 [translate]="'COMMENTS'"></h2>
+
+<div class="tile"
+     *ngFor="let comment of comments | async">
+  <!--<div class="tile-icon">-->
+  <!--<div class="card-title"><a [routerLink]="['/posts', item.$key]">{{item.title}}</a></div>-->
+  <!--</div>-->
+  <div class="tile-content">
+    <div class="tile-title">{{comment.text}}</div>
+  </div>
+</div>
+
+<form [formGroup]="commentForm" (submit)="addComment()" novalidate>
+  <!-- form textarea control -->
+  <div class="form-group">
+    <label class="form-label"
+           [translate]="'BLOG.COMMENT'"
+           for="text">
+    </label>
+    <textarea class="form-input" formControlName="text" id="text" placeholder="" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary"
+            [disabled]="commentForm.invalid"
+            [translate]="'SUBMIT'"
+            type="submit">
+    </button>
+  </div>
+
+
+</form>

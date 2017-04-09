@@ -1,0 +1,14 @@
+<div *ngIf="post">
+  <h1>{{post.title}}</h1>
+
+  <p>
+    {{post.body}}
+  </p>
+
+  <blog-post-comments [post]="post"></blog-post-comments>
+</div>
+
+<div *ngIf="!post" class="loading">
+
+</div>
+

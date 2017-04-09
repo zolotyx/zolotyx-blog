@@ -6,13 +6,11 @@ import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import { routing } from 'app/app.routing';
-import { PostListComponent } from './post/post-list/post-list.component';
-import { PostFormComponent } from './post/post-form/post-form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { PostDetailsComponent } from './post/post-details/post-details.component';
+import { BlogModule } from './blog/blog.module';
+import { appRouting } from './app.routing';
 
 // Must export the config
 export const firebaseConfig = {
@@ -37,19 +35,15 @@ export function HttpLoaderFactory(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
-    PostListComponent,
-    PostFormComponent,
-    LoginComponent,
     RegisterComponent,
-    PostDetailsComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    // LoginGuard,
-    routing,
+    appRouting,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,9 +51,11 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
+    BlogModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
