@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ApplicationRef, Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -11,6 +11,9 @@ import { RegisterComponent } from './auth/register/register.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BlogModule } from './blog/blog.module';
 import { appRouting } from './app.routing';
+import { AuthService } from './shared/services/auth.service';
+import { ServiceLocator } from './shared/services/base-http.service';
+import { UserService } from './shared/services/user.service';
 
 // Must export the config
 export const firebaseConfig = {
@@ -55,8 +58,13 @@ export function HttpLoaderFactory(http: Http) {
     BlogModule
   ],
   providers: [
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(public appRef: ApplicationRef, private injector: Injector) {
+    ServiceLocator.injector = this.injector;
+  }
 }

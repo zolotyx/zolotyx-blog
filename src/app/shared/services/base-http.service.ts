@@ -1,20 +1,26 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable, Injector, Type } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { BaseModel } from '../models/base.model';
 import { Observable } from 'rxjs/Observable';
+
+export class ServiceLocator {
+  public static injector: Injector;
+}
 
 @Injectable()
 export class BaseHttpService<M extends BaseModel> {
 
   protected entity: string;
   protected model: Type<M>;
+  protected af: AngularFire;
 
-  constructor(private af: AngularFire) {
+  constructor() {
+    this.af = ServiceLocator.injector.get(AngularFire);
   }
 
   save(model: M) {
     if (model.id) {
-      throw new Error('Not implemented');
+      return this.af.database.object(`/${this.entity}/${model.id}`).update(model);
     }
     return Promise.resolve(this.af.database.list(`/${this.entity}`).push(model));
   }

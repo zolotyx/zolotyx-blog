@@ -1,11 +1,11 @@
 <div class="container grid-960">
   <header class="navbar">
     <section class="navbar-primary">
-      <a routerLink="/" class="navbar-brand mr-10">Zolotyx's Blog</a>
+      <a routerLink="/" class="navbar-brand mr-10" [translate]="'SITE_NAME'"></a>
     </section>
     <section class="navbar-section">
-      <a href="#" *ngIf="user" (click)="logout()" [translate]="'AUTH.SIGN_OUT'"></a>
-      <a href="#" *ngIf="!user" routerLink="/login" [translate]="'AUTH.SIGN_IN'"></a>
+      <a href="#" *ngIf="authService.isLoggedIn" (click)="logout()" [translate]="'AUTH.SIGN_OUT'"></a>
+      <a href="#" *ngIf="!authService.isLoggedIn" routerLink="/login" [translate]="'AUTH.SIGN_IN'"></a>
     </section>
   </header>
   <router-outlet></router-outlet>

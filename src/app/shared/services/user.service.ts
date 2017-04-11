@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Resource } from '../decorators/resource.decorator';
 import { BaseHttpService } from './base-http.service';
-import { Comment } from '../models/comment.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 @Resource({
-  entity: 'comments',
-  model: Comment
+  entity: 'user',
+  model: User
 })
-export class CommentService extends BaseHttpService<Comment> {
+export class UserService extends BaseHttpService<User> {
 }

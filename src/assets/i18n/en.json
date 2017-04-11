@@ -1,6 +1,7 @@
 {
   "AUTH": {
     "EMAIL": "Email",
+    "DISPLAY_NAME": "Display Name",
     "PASSWORD": "Password",
     "REGISTER": "Register",
     "SIGN_IN": "Sign In",
@@ -9,9 +10,11 @@
     "LOGOUT": "Logout"
   },
   "BLOG": {
+    "NO_COMMENTS_YET": "No Comments Yet",
     "COMMENTS": "Comments",
     "COMMENT": "Comment"
   },
+  "SITE_NAME": "Zolotyx's Blog",
   "CANCEL": "Cancel",
   "SAVE": "Save",
   "SUBMIT": "Submit",

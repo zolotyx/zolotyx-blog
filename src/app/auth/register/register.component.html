@@ -1,6 +1,68 @@
-<form (ngSubmit)="submit($event)" [formGroup]="form" novalidate>
-  <input id="email" name="email" type="email" formControlName="email"/>
-  <input id="password" name="password" formControlName="password" type="password">
+<form class="form-horizontal" (ngSubmit)="submit($event)" [formGroup]="form" novalidate>
 
-  <button type="submit" [disabled]="form.invalid">Register</button>
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label"
+             [translate]="'AUTH.DISPLAY_NAME'"
+             for="displayName"></label>
+    </div>
+    <div class="col-9">
+      <input id="displayName"
+             class="form-input"
+             name="displayName"
+             type="text"
+             placeholder="{{'AUTH.DISPLAY_NAME'|translate}}"
+             [class.is-danger]="form.controls['displayName'].invalid && form.controls['displayName'].dirty"
+             formControlName="displayName"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label"
+             [translate]="'AUTH.EMAIL'"
+             for="email"></label>
+    </div>
+    <div class="col-9">
+      <input id="email"
+             class="form-input"
+             name="email"
+             type="email"
+             placeholder="{{'AUTH.EMAIL'|translate}}"
+             [class.is-danger]="form.controls['email'].invalid && form.controls['email'].dirty"
+             formControlName="email"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label"
+             [translate]="'AUTH.PASSWORD'"
+             for="password"></label>
+    </div>
+    <div class="col-9">
+      <input class="form-input"
+             id="password"
+             name="password"
+             [class.is-danger]="form.controls['password'].invalid && form.controls['password'].dirty"
+             formControlName="password"
+             type="password"
+             placeholder="{{'AUTH.PASSWORD'|translate}}"/>
+    </div>
+
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-3">
+
+    </div>
+    <div class="col-9">
+      <button type="submit"
+              class="btn btn-primary"
+              [class.loading]="loading"
+              [disabled]="form.invalid"
+              [translate]="'AUTH.REGISTER'"></button>
+    </div>
+  </div>
 </form>

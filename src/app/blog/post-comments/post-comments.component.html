@@ -1,16 +1,31 @@
 <h2 [translate]="'COMMENTS'"></h2>
 
-<div class="tile"
-     *ngFor="let comment of comments | async">
-  <!--<div class="tile-icon">-->
-  <!--<div class="card-title"><a [routerLink]="['/posts', item.$key]">{{item.title}}</a></div>-->
-  <!--</div>-->
-  <div class="tile-content">
-    <div class="tile-title">{{comment.text}}</div>
+<div *ngIf="(comments|async)?.length" class="columns">
+  <div class="column col-12" *ngFor="let comment of comments | async">
+    <div class="tile">
+      <div  class="tile-icon">
+        <figure class="avatar avatar-lg">
+          <img *ngIf="comment.user?.photoURL" [src]="comment.user.photoURL">
+          <i *ngIf="!comment.user?.photoURL" style="margin: 14px" class="icon icon-people"></i>
+        </figure>
+      </div>
+      <div class="tile-content">
+        <div class="tile-title">{{ comment.user.displayName}}</div>
+        <div class="tile-subtitle">{{comment.text}}</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<form [formGroup]="commentForm" (submit)="addComment()" novalidate>
+
+<div *ngIf="!(comments|async)?.length"
+     [translate]="'BLOG.NO_COMMENTS_YET'">
+</div>
+
+<form *ngIf="authService.isLoggedIn"
+      [formGroup]="commentForm"
+      (submit)="addComment()"
+      novalidate>
   <!-- form textarea control -->
   <div class="form-group">
     <label class="form-label"
@@ -26,6 +41,4 @@
             type="submit">
     </button>
   </div>
-
-
 </form>

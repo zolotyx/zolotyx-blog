@@ -2,7 +2,7 @@ export class BaseModel {
 
   public id: string;
 
-  constructor(params?: {}) {
+  constructor(params: {} = {}) {
     if (params) {
       this.parse(params);
     }

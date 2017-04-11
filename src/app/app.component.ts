@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './shared/services/auth.service';
 
 
 @Component({
@@ -12,20 +13,17 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   user: any;
 
-  constructor(private af: AngularFire,
+  constructor(public authService: AuthService,
               private translate: TranslateService) {
     translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
-    this.af.auth.subscribe(data => {
-      this.user = data;
-      console.log(data);
-    });
   }
 
   logout() {
-    this.af.auth.logout();
+    this.authService.auth.logout();
+    return false;
   }
 
 }

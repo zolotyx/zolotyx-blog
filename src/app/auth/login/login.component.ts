@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   public error: any;
   public loading: Boolean;
 
-  constructor(private af: AngularFire,
+  constructor(private authService: AuthService,
               private fb: FormBuilder,
               private router: Router) {
     this.form = this.fb.group({
@@ -40,12 +41,14 @@ export class LoginComponent implements OnInit {
   }
 
   public loginWithSocialNetwork() {
-    this.af.auth.login({
+    this.authService.auth.login({
       provider: AuthProviders.Google,
       method: AuthMethods.Popup,
     }).then(
       (res) => this.successHandler(res),
       (err) => this.errorHandler(err));
+
+    return false;
   }
 
 
@@ -55,7 +58,7 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       const data = this.form.value;
 
-      this.af.auth.login(data, {
+      this.authService.auth.login(data, {
         provider: AuthProviders.Password,
         method: AuthMethods.Password,
       }).then(
