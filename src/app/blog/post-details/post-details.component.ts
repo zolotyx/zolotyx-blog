@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../shared/services/post.service';
 import { BaseModel } from '../../shared/models/base.model';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'blog-post-details',

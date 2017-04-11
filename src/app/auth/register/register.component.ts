@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
@@ -23,16 +22,14 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  private errorHandler(error) {
+  private errorHandler() {
     this.loading = false;
-    console.log(error);
   }
 
-  private successHandler(loginData) {
-    console.log(loginData);
+  private successHandler() {
     this.loading = false;
     this.router.navigate(['']);
   }
@@ -43,9 +40,9 @@ export class RegisterComponent implements OnInit {
       this.loading = true;
       const data = this.form.value;
 
-      this.authService.auth.createUser(data).then(
-        (res) => this.successHandler(res),
-        (err) => this.errorHandler(err));
+      this.authService.auth.createUser(data)
+        .then((res) => this.successHandler())
+        .catch((err: Error) => this.errorHandler());
     }
   }
 }

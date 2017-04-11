@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
+import { AuthMethods, AuthProviders } from 'angularfire2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from '../../shared/services/auth.service';
 export class LoginComponent implements OnInit {
 
   public form: FormGroup;
-  public error: any;
+  public error: Error;
   public loading: Boolean;
 
   constructor(private authService: AuthService,
@@ -28,15 +28,14 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private errorHandler(error) {
+  private errorHandler(error: Error) {
     this.error = error;
     this.loading = false;
   }
 
-  private successHandler(loginData) {
+  private successHandler() {
 
     this.loading = false;
-    console.log(loginData);
     this.router.navigate(['']);
   }
 
@@ -45,8 +44,8 @@ export class LoginComponent implements OnInit {
       provider: AuthProviders.Google,
       method: AuthMethods.Popup,
     }).then(
-      (res) => this.successHandler(res),
-      (err) => this.errorHandler(err));
+      (res) => this.successHandler(),
+      (err: Error) => this.errorHandler(err));
 
     return false;
   }
@@ -61,10 +60,8 @@ export class LoginComponent implements OnInit {
       this.authService.auth.login(data, {
         provider: AuthProviders.Password,
         method: AuthMethods.Password,
-      }).then(
-        (res) => this.successHandler(res),
-        (err) => this.errorHandler(err)
-      );
+      }).then((res) => this.successHandler())
+        .catch((err: Error) => this.errorHandler(err));
     }
   }
 

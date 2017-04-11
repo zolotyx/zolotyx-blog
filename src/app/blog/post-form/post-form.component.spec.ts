@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostFormComponent } from './post-form.component';
+import { PostService } from '../../shared/services/post.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PostFormComponent', () => {
   let component: PostFormComponent;
@@ -8,9 +12,18 @@ describe('PostFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostFormComponent ]
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      providers: [
+        { provide: PostService, useValue: {} }
+      ],
+      declarations: [PostFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

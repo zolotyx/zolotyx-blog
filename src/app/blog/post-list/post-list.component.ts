@@ -13,12 +13,10 @@ export class PostListComponent implements OnInit {
   items: Observable<BaseModel[]>;
 
   constructor(private postService: PostService) {
-    this.items = this.postService.list({
-      query: {}
-    });
   }
 
   ngOnInit() {
+    this.items = this.postService.list();
   }
 
 }

@@ -1,5 +1,5 @@
 <div *ngIf="error" class="toast toast-danger">{{error.message}}</div>
-<form class="form-horizontal" (ngSubmit)="submit($event)" [formGroup]="form" novalidate>
+<form class="form-horizontal" (ngSubmit)="submit()" [formGroup]="form" novalidate>
 
 
   <div class="form-group">

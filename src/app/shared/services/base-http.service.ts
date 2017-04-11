@@ -8,7 +8,7 @@ export class ServiceLocator {
 }
 
 @Injectable()
-export class BaseHttpService<M extends BaseModel> {
+export abstract class BaseHttpService<M extends BaseModel> {
 
   protected entity: string;
   protected model: Type<M>;

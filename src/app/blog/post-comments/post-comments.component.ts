@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { UserService } from '../../shared/services/user.service';
-import { User } from '../../shared/models/user.model';
 import { Comment } from '../../shared/models/comment.model';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 

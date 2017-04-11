@@ -1,12 +1,31 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from './shared/services/auth.service';
+import { AngularFire } from 'angularfire2';
+import { UserService } from './shared/services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
+
+const angularFireStub = {};
+
+const serviceStub = {};
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        { provide: AuthService, useValue: serviceStub },
+        { provide: UserService, useValue: serviceStub },
+        { provide: AngularFire, useValue: angularFireStub }
       ],
     }).compileComponents();
   }));
@@ -15,18 +34,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
   }));
 });
